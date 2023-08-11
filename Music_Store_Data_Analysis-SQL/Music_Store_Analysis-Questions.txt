@@ -1,0 +1,34 @@
+>>>>>>>>>>>>>>>>>>>> Question Set 1 - Basic
+
+1. Who is the senior most employee based on job title?
+
+2. Which contries have the most invoices?
+
+3. What are top 3 values of total invoices? 
+
+4. Which city has the best customers. we would like to throw a promptional music festival 
+in the city we made the most money. write a query that returns one city that has the highest 
+sum of invoices totals.returns both the city name and sum of all invoice total?
+
+5. Who is the best customer? The customer who has spent the most money will be declared the best customer. 
+write a query that returns the person who has spent the most money?
+
+>>>>>>>>>>>>>>>>>>>> Question Set 2 - Moderate
+
+1. Write a query to return the email, first_name, last_name, and Genre of all Rock Music listners.
+Return your list ordered alphabetically by email starting with a?
+
+2. Let's invite the artist who have written the most rock music in our dataset. write a query that 
+returns the artist name and total track count of the top 10 rock bands?
+
+3. Return all the track names that have a song length longer than the average song length return the name and 
+milliseconds for each track. Order by the song length with the largest song listed first?
+
+
+>>>>>>>>>>>>>>>>>>>> Question Set 3 - Advance
+1. Find how much amount spent by each customer on artists? Write a query to return customer name,
+artist_name and total spent?
+
+2. We want to find out the most popular music genre for each contry. we determine the most popular 
+genre as genre with the highest amount of purchases. write a query that returns each contry along with 
+the top genre. For countries whrere the maximum number of purchases is shared return all genre?
