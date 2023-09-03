@@ -1,0 +1,27 @@
+1. Which state has highest literacy rate.
+2. Which state has lowest literacy rate.
+3. Which state which district has highest literacy rate.
+4. Which state which district has lowest literacy rate.
+
+5. which state has highest population.
+6. which state has lowest population.
+7. Which state which district has highest population.
+8. Which state which district has lowest population.
+
+9. Which state has highest km2 area.
+10. Which state has lowest km2 area.
+11. Which distric has highest km2 area.
+12. Which distric has lowest km2 area.
+
+13. Average population of each state.
+14. Count the total population of india.
+15. Count the total km2 area of india.
+16. Average growth of each state.
+17. Count of district in each state.
+18. Total population of each state.
+19. Average literacy rate of each state.
+20. Highest growth rate of top 5 states.
+21. Highest population of top 5 states. 
+22. Select states starting with letter 'M' and ending with letter 'a'.
+23. Count the number of males and Females by eachg district.
+24. Count total number of male and female by each state. 

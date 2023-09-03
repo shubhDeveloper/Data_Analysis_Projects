@@ -1,0 +1,196 @@
+--1. Which state has highest literacy rate.
+SELECT * FROM (
+(SELECT STATE,ROUND(AVG(LITERACY),2) H_LTR
+FROM LITERACY 
+GROUP BY(STATE) 
+ORDER BY 2 DESC) 
+) WHERE ROWNUM = 1; 
+/
+
+--2. Which state has lowest literacy rate.
+SELECT * FROM (
+SELECT STATE,ROUND(AVG(LITERACY),2) L_LTR
+FROM LITERACY 
+GROUP BY(STATE) 
+ORDER BY 2 asc
+) WHERE ROWNUM = 1;
+/
+
+--3. Which state which district has highest literacy rate.
+SELECT * FROM (
+SELECT STATE,DISTRICT,AVG(LITERACY) H_LTR 
+FROM LITERACY 
+GROUP BY (STATE,DISTRICT) 
+ORDER BY 3 DESC
+) WHERE ROWNUM = 1;
+
+/
+--4. Which state which district has lowest literacy rate.
+SELECT * FROM (
+SELECT STATE,DISTRICT,AVG(LITERACY) L_LTR 
+FROM LITERACY 
+GROUP BY (STATE,DISTRICT) 
+ORDER BY 3 ASC
+) WHERE ROWNUM = 1;
+/
+
+--5. which state has highest population.
+SELECT * FROM(
+SELECT STATE,ROUND(AVG(POPULATION),2) MAX_POPULATION
+FROM POPULATION
+GROUP BY (STATE) ORDER BY 2 DESC
+)
+WHERE ROWNUM = 1;
+/
+
+--6. Which state has lowest population.
+SELECT * FROM(
+SELECT STATE,ROUND(AVG(POPULATION),2) LOWERST_POPULATION
+FROM POPULATION
+GROUP BY (STATE) ORDER BY 2 ASC
+)
+WHERE ROWNUM = 1;
+/
+
+--7. Which state which district has highest population.
+SELECT * FROM (
+SELECT STATE,DISTRICT,POPULATION 
+FROM POPULATION 
+ORDER BY 3 DESC
+) WHERE ROWNUM = 1;
+/
+
+--8. Which state which district has lowest population.
+SELECT * FROM (
+SELECT STATE,DISTRICT,POPULATION 
+FROM POPULATION 
+ORDER BY 3 ASC
+) WHERE ROWNUM = 1;
+/
+
+--9. Which state has highest km2 area.
+SELECT * FROM(
+SELECT STATE,ROUND(AVG(AREA_KM2),2) MAX_AREA
+FROM POPULATION
+GROUP BY (STATE) ORDER BY 2 DESC
+)
+WHERE ROWNUM = 1;
+/
+
+--10. Which state has lowest km2 area.
+SELECT * FROM(
+SELECT STATE,ROUND(AVG(AREA_KM2),2) MIN_AREA
+FROM POPULATION
+GROUP BY (STATE) ORDER BY 2 ASC
+)
+WHERE ROWNUM = 1;
+/
+
+--11. Which distric has highest km2 area.
+SELECT * FROM (
+SELECT STATE,DISTRICT,POPULATION,AREA_KM2
+FROM POPULATION 
+ORDER BY 4 DESC
+) WHERE ROWNUM = 1;
+/
+
+--12. Which distric has lowest km2 area.
+SELECT * FROM (
+SELECT STATE,DISTRICT,POPULATION,AREA_KM2
+FROM POPULATION 
+ORDER BY 4 ASC
+) WHERE ROWNUM = 1;
+/
+
+--13. Average population of each state.
+SELECT STATE,ROUND(AVG(POPULATION),0)
+FROM POPULATION
+GROUP BY (STATE);
+/
+
+--14. Count the total population of india.
+SELECT SUM(POPULATION) TOTAL_POPULATON FROM POPULATION;
+/
+
+--15. Count the total km2 area of india.
+SELECT SUM(AREA_KM2) TOTAL_AREA FROM population;
+/
+
+--16. Average growth of each state.
+SELECT STATE,ROUND(AVG(GROWTH)) AVG_GROWTH 
+FROM literacy 
+GROUP BY (STATE)
+;
+/
+
+--17. Count of district in each state.
+SELECT STATE,COUNT(DISTRICT)
+FROM POPULATION 
+GROUP BY (STATE);
+/
+
+--18. Total population of each state.
+SELECT STATE,SUM(POPULATION) TOTAL_POPULATION
+FROM POPULATION
+GROUP BY (STATE);
+/
+
+--19. Average literacy rate of each state.
+SELECT STATE,ROUND(AVG(LITERACY),0) AVG_LITERACY
+FROM LITERACY 
+GROUP BY (STATE)
+/
+
+--20. Highest growth rate of top 5 states.
+SELECT STATE,HIGHEST_GROWTH FROM(
+SELECT STATE,SUM(GROWTH) HIGHEST_GROWTH
+FROM LITERACY
+GROUP BY (STATE) ORDER BY 2 DESC
+)
+WHERE ROWNUM <= 5;
+/
+
+--21. Highest population of top 5 states 
+SELECT STATE,HIGHEST_POPULATION FROM(
+SELECT STATE,SUM(POPULATION) HIGHEST_POPULATION
+FROM POPULATION
+GROUP BY (STATE) ORDER BY 2 DESC
+)
+WHERE ROWNUM <= 5;
+/
+
+--22. Select states starting with letter 'M' and ending with letter 'a'
+SELECT * FROM POPULATION 
+WHERE STATE LIKE 'M%' AND STATE LIKE '%a';
+/
+
+--23. Count the number of males and Females by district
+/*
+
+Formula for find the total number of Males and Females-
+
+Females/Males = Sex_Ratio
+Females+Males = Total Population
+Females = Population - Males
+(Population-Males) = (Sex_Ratio)*Males
+population = males(Sex_Ratio+1)
+Males = population/(Sex_Ratio+1)
+Females = population-POPULATION/(Sex_Ratio+1)
+(Population*(Sex_Ratio))/(Sex_Ratio+1)
+
+*/
+
+SELECT DISTRICT,STATE,SEX_RATIO,POPULATION,ROUND((POPULATION/(SEX_RATIO+1)),0) MALES,
+ROUND((POPULATION*SEX_RATIO)/(SEX_RATIO+1),0) FEMALES 
+FROM 
+(SELECT A.STATE,A.DISTRICT,POPULATION,(B.SEX_RATIO/1000) SEX_RATIO 
+FROM POPULATION A INNER JOIN LITERACY B 
+ON A.DISTRICT = B.DISTRICT);
+/
+
+
+
+
+
+
+
